@@ -12,6 +12,6 @@ namespace WebApplication9
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        public DbSet<CartModel> cartModels;
+        public DbSet<CartModel> cartModels { get; set; }
     }
 }

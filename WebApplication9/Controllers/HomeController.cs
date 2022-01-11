@@ -11,15 +11,34 @@ namespace WebApplication9.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        
+
+        public HomeController(AppDbContext context)
         {
-            _logger = logger;
+            _context = context;             
         }
 
         public IActionResult Index()
         {
+            CartModel newCart = new CartModel();
+            newCart.Title = "Davud Haji";
+            newCart.Price = 55;
+            newCart.Count = 4;
+            newCart.Discount = 40;
+            newCart.date = DateTime.UtcNow;
+
+            _context.cartModels.Add(newCart);
+
+            _context.SaveChanges();
+
+
+            
+
+            //ViewBag.carts = _context.cartModels.ToList();
+
+
             return View();
         }
 
